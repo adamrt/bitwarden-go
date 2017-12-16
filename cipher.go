@@ -99,8 +99,9 @@ func CiphersGetByUserUUID(db *sqlx.DB, ciphers *[]Cipher, uuid string) error {
 	return db.Select(ciphers, "SELECT * FROM ciphers WHERE user_uuid=$1", uuid)
 }
 
-func ParseCipherString(string) error {
-	matched, err := regexp.MatchString("foo.*", "seafood")
+func ParseCipherString(s string) error {
+	// TODO: add proper regex
+	matched, err := regexp.MatchString("foo.*", s)
 	if err != nil || matched == false {
 		return errors.New("invalid cipher string")
 	}
